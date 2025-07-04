@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { TodoContext } from "../context/TodoContext";
+import reactLogo from "../assets/react.svg"
 
 const Navbar = (props) => {
   const { userName, setUserName } = props;
@@ -30,7 +31,7 @@ const Navbar = (props) => {
       <div className="flex justify-between items-center">
         {/* Logo */}
         <Link to={"/all"} className="flex items-center gap-2">
-          <img src="/src/assets/react.svg" alt="logo" className="h-8 w-8" />
+          <img src={reactLogo} alt="logo" className="h-8 w-8" />
           <div className="flex flex-col leading-none font-semibold text-sm md:text-lg text-black">
             <span>My</span>
             <span>Tasks</span>
