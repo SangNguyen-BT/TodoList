@@ -10,6 +10,8 @@ import todoRoute from "./routes/todoRoute.js";
 dotenv.config();
 connectDB();
 
+const PORT = process.env.PORT || 8080;
+
 /* Middleware */
 const app = express();
 app.use(express.json());
@@ -24,6 +26,6 @@ app.get("/", (req, res) => {
   res.send("API working");
 });
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
   console.log("Server is running");
 });
