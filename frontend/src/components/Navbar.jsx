@@ -12,7 +12,7 @@ const Navbar = (props) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const navigate = useNavigate();
 
-  function handleLogout() {
+  const handleLogout = () => {
     localStorage.removeItem("userName");
     localStorage.removeItem("token");
 

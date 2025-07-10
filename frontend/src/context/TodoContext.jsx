@@ -19,19 +19,19 @@ function TodoContextProvider(props) {
 
   const token = localStorage.getItem("token")
 
-  function handleChange(e) {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "input") setInput(value);
     if (name === "date") setDate(value);
     if (name === "time") setTime(value);
   }
 
-  async function handleSubmitForm(e) {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
-    await handleAddTodo();
+    handleAddTodo();
   }
 
-  async function handleAddTodo() {
+  const handleAddTodo = async () => {
     if (input !== "") {
       if (isAuthen) {
         // Login
@@ -63,7 +63,7 @@ function TodoContextProvider(props) {
     }
   }
 
-  async function deleteTodo(id) {
+  const deleteTodo = async (id) => {
     if (isAuthen) {
       // Login
       try {
@@ -85,7 +85,7 @@ function TodoContextProvider(props) {
     }
   }
 
-  async function toggleTodo(id) {
+  const toggleTodo = async (id) => {
     if (isAuthen) {
       try {
         const todo = todos.find((todo) => todo._id === id);
@@ -112,7 +112,7 @@ function TodoContextProvider(props) {
     }
   }
 
-  async function updateTodo(id, updatedTodo) {
+  const updateTodo = async (id, updatedTodo) => {
     if (isAuthen) {
       try {
         const res = await axios.put(
@@ -140,12 +140,12 @@ function TodoContextProvider(props) {
     }
   }
 
-  function isToday(dateString) {
+  const isToday = (dateString) => {
     const today = new Date().toISOString().split("T")[0];
     return dateString === today;
   }
 
-  function isOverdue(dateString) {
+  const isOverdue = (dateString) => {
     const today = new Date()
     const dueDate = new Date(dateString)
 
@@ -155,7 +155,7 @@ function TodoContextProvider(props) {
     return dueDate < today
   }
 
-  async function fetchTodos(token) {
+  const fetchTodos = async () => {
     try {
       const res = await axios.get(`${backendUrl}/api/todos/alltodos`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -166,6 +166,7 @@ function TodoContextProvider(props) {
     } catch (error) {
       console.error("Failed to fetch todos:", error);
       setTodos([]);
+      toast.error("Failed to fetch tasks")
     }
   }
 
@@ -174,14 +175,16 @@ function TodoContextProvider(props) {
     // setIsAuthen(!!token);
 
     if (token) {
-setIsAuthen(true)
-      fetchTodos(token);
+      setIsAuthen(true)
+      fetchTodos();
 
     } else {
+      setIsAuthen(false)
+
       const saved = localStorage.getItem("todos");
       setTodos(saved ? JSON.parse(saved) : []);
     }
-  }, [isAuthen]);
+  }, [token]);
 
   useEffect(() => {
     if (!isAuthen) {

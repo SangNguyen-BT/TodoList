@@ -12,7 +12,7 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-  async function resetPassword(e) {
+  const resetPassword = async (e) => {
     e.preventDefault();
 
     if (newPassword !== confirmPassword) {

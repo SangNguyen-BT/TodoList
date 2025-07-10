@@ -11,11 +11,11 @@ const Completed = () => {
 
   const completedTodos = todos.filter((todo) => !todo.active);
 
-  function getRealIndex(todo) {
+  const getRealIndex = (todo) => {
     return todos.findIndex((t) => t === todo);
   }
 
-  async function deleteAllCompleted() {
+  const deleteAllCompleted = async () => {
     if (window.confirm("Are you sure to delete all?")) {
       if (isAuthen) {
         try {

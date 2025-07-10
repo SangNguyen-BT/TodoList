@@ -18,7 +18,7 @@ const MyProfile = (props) => {
 
   const token = localStorage.getItem("token");
 
-  async function fetchUserInfo() {
+  const fetchUserInfo = async () => {
     try {
       const res = await axios.get(`${backendUrl}/api/auth/info`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -31,7 +31,7 @@ const MyProfile = (props) => {
     }
   }
 
-  async function fetchTodosByUser() {
+  const fetchTodosByUser = async () => {
     try {
       const res = await axios.get(`${backendUrl}/api/todos/todobyuser`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -44,7 +44,7 @@ const MyProfile = (props) => {
     }
   }
 
-  async function profileUpdate() {
+  const profileUpdate = async () => {
     try {
       const res = await axios.put(
         `${backendUrl}/api/auth/updateuser/${user._id}`,
@@ -65,7 +65,7 @@ const MyProfile = (props) => {
     }
   }
 
-  async function changePassword() {
+  const changePassword = async () => {
     try {
       await axios.put(
         `${backendUrl}/api/auth/changepassword/${user._id}`,
@@ -104,13 +104,14 @@ const MyProfile = (props) => {
 
   useEffect(() => {
     fetchUserInfo();
+    fetchTodosByUser()
   }, []);
 
-  useEffect(() => {
-    if (user._id) {
-      fetchTodosByUser();
-    }
-  }, [user._id]);
+  // useEffect(() => {
+  //   if (user._id) {
+  //     fetchTodosByUser();
+  //   }
+  // }, [user._id]);
 
   return (
     <div className="max-w-3xl my-0 mx-auto">

@@ -18,7 +18,7 @@ const Login = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (forgotPassword) {

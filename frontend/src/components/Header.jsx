@@ -12,7 +12,7 @@ const Header = () => {
 
       <form
         onSubmit={handleSubmitForm}
-        className="flex flex-col sm:flex-row items-center gap-3 shadow-md rounded-lg p-4 bg-gray-100 max-w-xl mx-auto w-full"
+        className="flex flex-col gap-3 shadow-md rounded-lg p-4 bg-gray-100 max-w-xl mx-auto w-full sm:flex-row sm:gap-2 sm:p-3"
       >
         <input
           type="text"
@@ -30,7 +30,7 @@ const Header = () => {
           min={new Date().toISOString().split("T")[0]}
           onChange={handleChange}
           required
-          className="border border-gray-300 rounded-md px-2 py-2 focus:outline-none"
+          className="border border-gray-300 rounded-md px-2 py-2 focus:outline-none w-full min-h-[2.5rem] box-border text-left"
         />
         <input
           type="time"
@@ -38,7 +38,7 @@ const Header = () => {
           value={time}
           onChange={handleChange}
           required
-          className="border border-gray-300 rounded-md px-2 py-2 focus:outline-none"
+          className="border border-gray-300 rounded-md px-2 py-2 focus:outline-none w-full min-h-[2.5rem] box-border text-left"
         />
 
         <button className="py-2.5 px-3.5 bg-[#61d18c] rounded-lg font-extrabold cursor-pointer">
